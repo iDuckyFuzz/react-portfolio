@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { Nav } from './components/Nav';
+import { ProjectCard } from './components/ProjectCard';
+import Gatsby from "./images/gatsby.png";
 
-function App() {
+const App = () => {
+  let[projects] = useState([{name:"test", desc:"this is my project", alt:"image desc", img:Gatsby},
+  {name:"test2", desc:"this is my 2nd project", alt:"image desc", img:Gatsby},
+  {name:"test3", desc:"this is my 3rd project", alt:"image desc", img:Gatsby}]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav/>
+      <h1 className="header">Projects</h1>
+      <div className="projects">
+      {projects.map((project) => {
+        return(
+          <ProjectCard image={project.img} altText="test" header={project.name} details={project.desc}/>
+        )
+      })}
+      </div>
     </div>
   );
 }
